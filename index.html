@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz 14 de Febrero</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #c77dff;
+        font-family: 'Segoe UI', sans-serif;
+        color: white;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    h1 {
+        margin-top: 80px;
+        font-size: 3em;
+        animation: fadeIn 2s ease-in-out;
+    }
+
+    p {
+        width: 80%;
+        max-width: 700px;
+        margin: 20px auto;
+        font-size: 1.2em;
+        line-height: 1.6;
+        animation: fadeIn 3s ease-in-out;
+    }
+
+    iframe {
+        margin-top: 20px;
+        border-radius: 12px;
+        animation: fadeIn 4s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0; transform: translateY(20px);}
+        to {opacity: 1; transform: translateY(0);}
+    }
+
+    /* Corazones y flores */
+    .float {
+        position: absolute;
+        bottom: -50px;
+        font-size: 24px;
+        animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+        from { transform: translateY(0); opacity: 1; }
+        to { transform: translateY(-110vh); opacity: 0; }
+    }
+
+    /* Mensaje sorpresa */
+    .mensaje-sorpresa {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        background: rgba(255,255,255,0.15);
+        backdrop-filter: blur(10px);
+        padding: 30px;
+        border-radius: 20px;
+        font-size: 1.5em;
+        width: 80%;
+        max-width: 500px;
+        transition: 0.5s ease;
+        box-shadow: 0 0 30px rgba(255,255,255,0.4);
+    }
+
+    .mensaje-sorpresa.activo {
+        transform: translate(-50%, -50%) scale(1);
+    }
+</style>
+</head>
+<body>
+
+<h1>Feliz 14 de febrero</h1>
+
+<p>
+Espero que esta manualidad actualizada a los tiempos de hoy sea de tu agrado, la siguiente melodia es la que resuena en mi cabeza luego de pasar un dia con vos, quiero que este sea nuestro primer 14 de febrero y que a la vez sea el primero de muchos mas que vendran, en pocas palabras, te amo mucho y esta es tu melodia.
+</p>
+
+<iframe width="80%" height="120" scrolling="no" frameborder="no" allow="autoplay"
+src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/santiago-carrizo-461125908/14-de-febrero&color=%23ffffff&auto_play=true&hide_related=false&show_comments=false&show_user=false&show_reposts=false">
+</iframe>
+
+<div class="mensaje-sorpresa" id="mensaje">
+    ❤️ soy un fanatico y un adicto a tu sonrisa, desde el primer instante ❤️
+</div>
+
+<script>
+    function createFloatingElement() {
+        const element = document.createElement("div");
+        element.classList.add("float");
+        element.innerHTML = Math.random() > 0.5 ? "❤️" : "🌸";
+        element.style.left = Math.random() * 100 + "vw";
+        element.style.animationDuration = (5 + Math.random() * 5) + "s";
+        element.style.fontSize = (20 + Math.random() * 30) + "px";
+        document.body.appendChild(element);
+
+        setTimeout(() => {
+            element.remove();
+        }, 10000);
+    }
+
+    setInterval(createFloatingElement, 500);
+
+    // Mostrar mensaje al tocar pantalla
+    const mensaje = document.getElementById("mensaje");
+
+    document.addEventListener("click", () => {
+        mensaje.classList.add("activo");
+        setTimeout(() => {
+            mensaje.classList.remove("activo");
+        }, 4000);
+    });
+</script>
+
+</body>
+</html>
