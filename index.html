@@ -9,17 +9,33 @@
     body {
         margin: 0;
         padding: 0;
-        background: #c77dff;
+        background: linear-gradient(180deg, #c77dff, #a06cd5);
         font-family: 'Segoe UI', sans-serif;
         color: white;
         text-align: center;
         overflow: hidden;
     }
 
+    /* Estrellas */
+    .star {
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: white;
+        border-radius: 50%;
+        animation: twinkle 2s infinite alternate;
+    }
+
+    @keyframes twinkle {
+        from { opacity: 0.2; }
+        to { opacity: 1; }
+    }
+
     h1 {
         margin-top: 80px;
         font-size: 3em;
         animation: fadeIn 2s ease-in-out;
+        text-shadow: 0 0 10px white, 0 0 20px white;
     }
 
     p {
@@ -29,12 +45,14 @@
         font-size: 1.2em;
         line-height: 1.6;
         animation: fadeIn 3s ease-in-out;
+        text-shadow: 0 0 8px white;
     }
 
     iframe {
-        margin-top: 20px;
-        border-radius: 12px;
+        margin-top: 25px;
+        border-radius: 15px;
         animation: fadeIn 4s ease-in-out;
+        box-shadow: 0 0 25px rgba(255,255,255,0.5);
     }
 
     @keyframes fadeIn {
@@ -42,16 +60,24 @@
         to {opacity: 1; transform: translateY(0);}
     }
 
+    /* Corazones blancos */
     .heart {
         position: absolute;
         bottom: -50px;
         font-size: 24px;
         animation: floatUp linear infinite;
+        opacity: 0.9;
     }
 
     @keyframes floatUp {
-        from { transform: translateY(0); opacity: 1; }
-        to { transform: translateY(-110vh); opacity: 0; }
+        from {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateY(-110vh);
+            opacity: 0;
+        }
     }
 </style>
 </head>
@@ -63,24 +89,25 @@
 Espero que esta manualidad actualizada a los tiempos de hoy sea de tu agrado, la siguiente melodia es la que resuena en mi cabeza luego de pasar un dia con vos, quiero que este sea nuestro primer 14 de febrero y que a la vez sea el primero de muchos mas que vendran, en pocas palabras, te amo mucho y esta es tu melodia.
 </p>
 
-<!-- Player oculto -->
-<iframe id="player"
-width="0"
-height="0"
+<!-- Reproductor visible -->
+<iframe
+width="80%"
+height="166"
 scrolling="no"
 frameborder="no"
 allow="autoplay"
-src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/santiago-carrizo-461125908/14-de-febrero&auto_play=true">
+src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/santiago-carrizo-461125908/14-de-febrero&color=%23ffffff&auto_play=true&show_user=false">
 </iframe>
 
 <script>
+    // Crear corazones blancos
     function createHeart() {
         const heart = document.createElement("div");
         heart.classList.add("heart");
-        heart.innerHTML = Math.random() > 0.5 ? "❤️" : "🤍";
+        heart.innerHTML = "🤍";
         heart.style.left = Math.random() * 100 + "vw";
-        heart.style.animationDuration = (5 + Math.random() * 5) + "s";
-        heart.style.fontSize = (20 + Math.random() * 30) + "px";
+        heart.style.animationDuration = (6 + Math.random() * 4) + "s";
+        heart.style.fontSize = (20 + Math.random() * 25) + "px";
         document.body.appendChild(heart);
 
         setTimeout(() => {
@@ -88,13 +115,21 @@ src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/santiago-carr
         }, 10000);
     }
 
-    setInterval(createHeart, 400);
+    setInterval(createHeart, 600);
 
-    // Si el navegador bloquea autoplay, se activa al primer clic
-    document.addEventListener("click", function() {
-        const iframe = document.getElementById("player");
-        iframe.src = iframe.src;
-    }, { once: true });
+    // Crear estrellas de fondo
+    function createStars() {
+        for (let i = 0; i < 80; i++) {
+            const star = document.createElement("div");
+            star.classList.add("star");
+            star.style.top = Math.random() * 100 + "vh";
+            star.style.left = Math.random() * 100 + "vw";
+            star.style.animationDuration = (1 + Math.random() * 3) + "s";
+            document.body.appendChild(star);
+        }
+    }
+
+    createStars();
 </script>
 
 </body>
